@@ -134,6 +134,7 @@ begin
          declare
             Dummy : Entanglement_Cost;
          begin
+            Dummy := T_Depth_Error :
             Dummy := T_Depth_Bound (10, 50);
             pragma Unreferenced (Dummy);
          end;
@@ -149,15 +150,15 @@ begin
    -- TEST 12 — Invariants and Boundary Conditions
    Put_Line ("TEST 12 — Invariants and Boundary Conditions");
    Check ("12.1 Minimum qubits (1) valid across T-gate bound", T_Gate_Bound (1, 1) = 2);
-   Check ("12.2 Minimum qubits (1) valid across T-depth bound", T_Depth_Bound (1, 1) = 68);
+   Check ("12.2 Minimum qubits (1) valid square root / depth", T_Depth_Bound (1, 1) = 68);
    Check ("12.3 Minimum qubits (1) valid across port-teleportation", Port_Teleportation_Cost (1, Single_Exponential) = 4);
 
    -- TEST 13 — Comprehensive API Integration & Workflow
    Put_Line ("TEST 13 — Comprehensive API Integration & Workflow");
    declare
-      Q       : Qubit_Count := 2;
-      Tg      : Gate_Count  := 3;
-      Dep     : T_Depth     := 1;
+      Q       : constant Qubit_Count := 2;
+      Tg      : constant Gate_Count  := 3;
+      Dep     : constant T_Depth     := 1;
       Valid   : Boolean;
       Tb      : Entanglement_Cost;
       Db      : Entanglement_Cost;
