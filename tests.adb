@@ -66,7 +66,7 @@ begin
 
    -- TEST 9 — Circuit Validation Function
    Put_Line ("TEST 9 — Circuit Validation Function");
-   Check ("9.1 Validate normal circuit (3, 5, 2)", Validate_Circuit (3, 5, 2) = True);
+   Check ("9.1 Validate normal circuit (3, 5, 2)", Validate_Circuit (3, 5, 2));
    Check ("9.2 Validate excessive T-gates (3, 15000, 2)", Validate_Circuit (3, 15000, 2) = False);
    Check ("9.3 Validate excessive depth (3, 5, 2000)", Validate_Circuit (3, 5, 2000) = False);
 
@@ -170,7 +170,7 @@ begin
       Pt := Port_Teleportation_Cost (Q, Single_Exponential);
       Rc := Routing_Entanglement_Cost (4, 6);
 
-      Check ("13.1 Integration validation passes", Valid = True);
+      Check ("13.1 Integration validation passes", Valid);
       Check ("13.2 Integration bounds computed", Tb > 0 and Db > 0 and Pt > 0);
       Check ("13.3 Integration routing computed", Rc = 10);
    end;
