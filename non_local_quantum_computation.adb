@@ -53,6 +53,10 @@ package body Non_Local_Quantum_Computation is
                   end if;
                   Inner := Inner * 2;
                end loop;
+               if Inner > Natural'Last / Inner then
+                  raise Constraint_Error with "Double exponential overflow";
+               end if;
+               Inner := Inner * Inner;
                for I in 1 .. Inner loop
                   if Result > Natural'Last / 2 then
                      raise Constraint_Error with "Double exponential outer overflow";
@@ -66,9 +70,6 @@ package body Non_Local_Quantum_Computation is
 
    function Routing_Entanglement_Cost (Input_Bits : Natural; CDS_Random_Bits : Natural) return Entanglement_Cost is
    begin
-      if Input_Bits = 0 or else CDS_Random_Bits = 0 then
-         raise Invalid_Parameters;
-      end if;
       if CDS_Random_Bits > Natural'Last - Input_Bits then
          raise Constraint_Error with "Routing entanglement cost overflow";
       end if;
