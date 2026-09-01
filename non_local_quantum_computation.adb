@@ -70,9 +70,14 @@ package body Non_Local_Quantum_Computation is
 
    function Routing_Entanglement_Cost (Input_Bits : Natural; CDS_Random_Bits : Natural) return Entanglement_Cost is
    begin
+      if Input_Bits = 0 or else CDS_Random_Bits = 0 then
+         raise Invalid_Parameters;
+      end if;
+      pragma Warnings (Off, "condition can only be True*");
       if CDS_Random_Bits > Natural'Last - Input_Bits then
          raise Constraint_Error with "Routing entanglement cost overflow";
       end if;
+      pragma Warnings (On, "condition can only be True*");
       return Entanglement_Cost(CDS_Random_Bits + Input_Bits);
    end Routing_Entanglement_Cost;
 
