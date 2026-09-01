@@ -13,7 +13,7 @@ package Non_Local_Quantum_Computation is
    -- 1. T-gate count based upper bound: E(U) = O(n * 2^k)
    function T_Gate_Bound (Qubits : Qubit_Count; T_Gates : Gate_Count) return Entanglement_Cost
      with Pre => Qubits > 0,
-          Post => T_Gate_Bound'Result >= Natural(Qubits);
+          Post => T_Gate_Bound'Result >= Entanglement_Cost(Qubits);
 
    -- 2. T-depth based upper bound: E(U) = O((68 * n)^d)
    function T_Depth_Bound (Qubits : Qubit_Count; Depth : T_Depth) return Entanglement_Cost
